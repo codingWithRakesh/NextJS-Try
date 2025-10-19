@@ -28,11 +28,11 @@ export const PUT = asyncHandler(async (req, { params }) => {
         throw new ApiError(404, "user not found");
     }
 
-    const todoId = params.todoID
+    const { todoID } = await params;
     const { isCommplete, content, title } = await req.json();
 
     const todo = await TodoModel.findByIdAndUpdate(
-        todoId,
+        todoID,
         {
             ...(title && { title }),
             ...(content && { content }),

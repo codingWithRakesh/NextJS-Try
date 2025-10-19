@@ -14,38 +14,63 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "./ui/textarea"
 import { Checkbox } from "./ui/checkbox"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 
-export function CreateTodo() {
+export function CreateTodo({ editData }) {
+    // console.log("Edit Data in CreateTodo:", editData);
     const [nodeCreate, setNodeCreate] = useState({
         title: "",
         content: "",
         isCommplete: false
     })
+    useEffect(() => {
+        if (editData) {
+            setNodeCreate({
+                title: editData.title || "",
+                content: editData.content || "",
+                isCommplete: editData.isCommplete || Boolean(editData.isCommplete)
+            })
+        }
+    }, [editData])
+
     const [loading, setLoading] = useState(false)
     const onsubmit = async () => {
-        console.log(nodeCreate)
-        try {
-            setLoading(true)
-            const response = await axios.post("/api/create", nodeCreate)
-            console.log(response.data)
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setLoading(false)
-            setNodeCreate({
-                title: "",
-                content: "",
-                isCommplete: false
-            })
+        // console.log(nodeCreate)
+        if (editData?.isEdit) {
+            try {
+                setLoading(true)
+                const response = await axios.put(`/api/update/${editData._id}`, nodeCreate)
+                // console.log(response.data)
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setLoading(false)
+            }
+        } else {
+            try {
+                setLoading(true)
+                const response = await axios.post("/api/create", nodeCreate)
+                // console.log(response.data)
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setLoading(false)
+                setNodeCreate({
+                    title: "",
+                    content: "",
+                    isCommplete: false
+                })
+            }
         }
     }
     return (
         <div className="flex my-12 items-center justify-center">
             <Card className="w-full max-w-sm">
                 <CardHeader>
-                    <CardTitle>Create a new Node</CardTitle>
+                    <CardTitle>
+                        {editData?.isEdit ? "Edit Todo" : "Create a new Todo"}
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form>
@@ -90,9 +115,11 @@ export function CreateTodo() {
                     </form>
                 </CardContent>
                 <CardFooter className="flex-col gap-2">
-                    <Button onClick={onsubmit} className="w-full cursor-pointer" disabled={loading}>
+                    {editData?.isEdit ? <Button onClick={onsubmit} className="w-full cursor-pointer" disabled={loading}>
+                        {loading ? "Updating..." : "Update Todo"}
+                    </Button> : <Button onClick={onsubmit} className="w-full cursor-pointer" disabled={loading}>
                         {loading ? "Creating..." : "Create Todo"}
-                    </Button>
+                    </Button>}
                 </CardFooter>
             </Card>
         </div>

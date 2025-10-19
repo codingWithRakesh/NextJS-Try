@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export const DELETE = asyncHandler(async (req, {params}) => {
+export const GET = asyncHandler(async (req, { params }) => {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken')?.value || req.headers.get('Authorization')?.replace('Bearer ', '')
     if (!token) {
@@ -29,12 +29,12 @@ export const DELETE = asyncHandler(async (req, {params}) => {
     }
 
     const { todoID } = await params;
-    const todo = await TodoModel.findByIdAndDelete(todoID)
-    if(!todo){
-        throw new ApiError(500, "failed to delete");
+    const todo = await TodoModel.findById(todoID)
+    if (!todo) {
+        throw new ApiError(404, "todo not found");
     }
 
     return NextResponse.json(
-        new ApiResponse(200,null,"delete successfully")
+        new ApiResponse(200, todo, "fetch successfully")
     )
-})
+});

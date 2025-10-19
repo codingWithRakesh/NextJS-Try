@@ -22,15 +22,21 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "./ui/checkbox"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 
 export function Todo({ todo }) {
+    const router = useRouter()
     const deleteTodo = async (id) => {
         try {
             await axios.delete(`/api/delete/${id}`)
-            console.log("Todo deleted successfully")
+            // console.log("Todo deleted successfully")
         } catch (error) {
             console.error("Error deleting todo:", error)
         }
+    }
+
+    const editTodo = async (id) => {
+        router.push(`/edit/${id}`)
     }
     return (
         <Card className="w-full max-w-sm">
@@ -61,7 +67,7 @@ export function Todo({ todo }) {
                 </form>
             </CardContent>
             <CardFooter className="flex-col gap-2">
-                <Button className="w-full cursor-pointer">
+                <Button onClick={() => editTodo(todo._id)} className="w-full cursor-pointer">
                     Edit
                 </Button>
                 <AlertDialog>

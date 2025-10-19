@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import { useState } from "react"
+import { useUser } from "@/contexts/userContext"
 
 const page = () => {
   const [loginDetails, setLoginDetails] = useState({
@@ -22,6 +23,7 @@ const page = () => {
     password : ""
   })
   const [loading, setLoading] = useState(false)
+  const { user, setUser } = useUser()
   const router = useRouter();
   const handleLoginRedirect = () => {
     router.push('/register');
@@ -31,7 +33,11 @@ const page = () => {
     setLoading(true);
     try {
       const response = await axios.post("/api/login", loginDetails);
-      console.log(response.data);
+      // console.log(response.data.data.user);
+      setUser({
+        user : response.data.data.user,
+        isAuthenticated: true
+      });
       router.push('/');
     } catch (error) {
       console.error(error);
