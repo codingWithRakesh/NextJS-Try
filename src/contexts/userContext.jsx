@@ -17,7 +17,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (!user.isAuthenticated) {
       if (pathname !== "/login" && pathname !== "/register") {
-        // console.log("User not authenticated → redirecting to /login");
         router.push("/login");
       }
     } else {
