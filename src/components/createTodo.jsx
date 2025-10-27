@@ -18,7 +18,6 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 export function CreateTodo({ editData }) {
-    // console.log("Edit Data in CreateTodo:", editData);
     const [nodeCreate, setNodeCreate] = useState({
         title: "",
         content: "",
