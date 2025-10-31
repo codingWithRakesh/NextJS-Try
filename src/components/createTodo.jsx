@@ -35,7 +35,6 @@ export function CreateTodo({ editData }) {
 
     const [loading, setLoading] = useState(false)
     const onsubmit = async () => {
-        // console.log(nodeCreate)
         if (editData?.isEdit) {
             try {
                 setLoading(true)
