@@ -22,7 +22,7 @@ export function CreateTodo({ editData }) {
         title: "",
         content: "",
         isCommplete: false
-    })
+    });
     useEffect(() => {
         if (editData) {
             setNodeCreate({
