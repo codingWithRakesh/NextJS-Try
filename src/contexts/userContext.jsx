@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   });
 
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   useEffect(() => {
     if (!user.isAuthenticated) {
