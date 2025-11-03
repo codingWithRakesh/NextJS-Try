@@ -48,7 +48,6 @@ export function CreateTodo({ editData }) {
             try {
                 setLoading(true)
                 const response = await axios.post("/api/create", nodeCreate)
-                // console.log(response.data)
             } catch (error) {
                 console.error(error)
             } finally {
