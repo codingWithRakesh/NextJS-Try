@@ -29,7 +29,6 @@ export function Todo({ todo }) {
     const deleteTodo = async (id) => {
         try {
             await axios.delete(`/api/delete/${id}`)
-            // console.log("Todo deleted successfully")
         } catch (error) {
             console.error("Error deleting todo:", error)
         }
