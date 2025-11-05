@@ -9,7 +9,6 @@ const NavBar = () => {
     const router = useRouter();
     const pathname = usePathname()
     const isEditPage = pathname.startsWith("/edit/")
-    console.log("Is Edit Page:", isEditPage);
     const { user, setUser } = useUser()
     const handleLogout = async () => {
         try {
