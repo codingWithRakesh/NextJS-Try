@@ -33,7 +33,6 @@ const page = () => {
     setLoading(true);
     try {
       const response = await axios.post("/api/login", loginDetails);
-      // console.log(response.data.data.user);
       setUser({
         user : response.data.data.user,
         isAuthenticated: true
