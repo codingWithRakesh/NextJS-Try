@@ -29,7 +29,6 @@ const page = () => {
     setLoading(true);
     try {
       const response = await axios.post("/api/register", registerForm);
-      // console.log(response.data);
       router.push('/login');
     } catch (error) {
       console.error(error);
