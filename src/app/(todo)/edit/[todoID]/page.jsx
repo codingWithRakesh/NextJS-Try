@@ -8,7 +8,6 @@ import axios from 'axios';
 const page = () => {
     const { todoID } = useParams();
     const [todo, setTodo] = useState({})
-    // console.log("Editing todo with ID:", todoID);
 
     useEffect(() => {
         const fetchTodo = async () => {
