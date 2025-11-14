@@ -13,7 +13,6 @@ const page = () => {
         const fetchTodo = async () => {
             try {
                 const response = await axios.get(`/api/findById/${todoID}`);
-                // console.log("Fetched todo:", response.data.data);
                 setTodo({...response.data.data, isEdit : true});
             } catch (error) {
                 console.error("Error fetching todo:", error);
