@@ -11,7 +11,6 @@ export default function RootLayout({ children }) {
         const fetchUser = async () => {
             try {
                 const response = await axios.get('/api/currentUser', { withCredentials: true });
-                // console.log('Fetched user:', response.data)
                 if (response.status === 200) {
                     setUser({
                         user: response.data.data.user,
