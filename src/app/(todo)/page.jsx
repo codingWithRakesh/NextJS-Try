@@ -13,7 +13,6 @@ export default function Home() {
     const fetchTodos = async () => {
       try {
         const response = await axios.get("/api/all");
-        // console.log(response.data.data);
         setTodos(response.data.data);
       } catch (error) {
         console.error("Error fetching todos:", error);
