@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 const NavBar = () => {
     const router = useRouter();
     const pathname = usePathname();
-    const isEditPage = pathname.startsWith("/edit/")
+    const isEditPage = pathname.startsWith("/edit/");
     const { user, setUser } = useUser()
     const handleLogout = async () => {
         try {
