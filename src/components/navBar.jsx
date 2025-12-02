@@ -9,7 +9,7 @@ const NavBar = () => {
     const router = useRouter();
     const pathname = usePathname();
     const isEditPage = pathname.startsWith("/edit/");
-    const { user, setUser } = useUser();
+    const { _, setUser } = useUser();
     const handleLogout = async () => {
         try {
             await axios.get('/api/logout', { withCredentials: true });
