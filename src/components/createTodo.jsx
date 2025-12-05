@@ -46,7 +46,7 @@ export function CreateTodo({ editData }) {
         } else {
             try {
                 setLoading(true)
-                await axios.post("/api/create", nodeCreate)
+                await axios.post("/api/create", nodeCreate);
             } catch (error) {
                 console.error(error)
             } finally {
