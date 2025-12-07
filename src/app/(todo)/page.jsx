@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 
 export default function Home() {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([]);
   useEffect(() => {
     const fetchTodos = async () => {
       try {
