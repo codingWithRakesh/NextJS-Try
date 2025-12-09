@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const page = () => {
     const { todoID } = useParams();
-    const [todo, setTodo] = useState({})
+    const [todo, setTodo] = useState({});
 
     useEffect(() => {
         const fetchTodo = async () => {
