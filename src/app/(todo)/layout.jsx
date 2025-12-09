@@ -6,7 +6,7 @@ import axios from "axios"
 import NavBar from "@/components/navBar"
 
 export default function RootLayout({ children }) {
-    const { _, setUser } = useUser()
+    const { _, setUser } = useUser();
     useEffect(() => {
         const fetchUser = async () => {
             try {
