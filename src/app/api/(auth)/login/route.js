@@ -20,7 +20,7 @@ export const POST = asyncHandler(async (request) => {
         $or: [{ userName }, { email }],
     }).select("+password");
     if (!user) {
-        throw new ApiError(404, "user not found")
+        throw new ApiError(404, "user not found");
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
