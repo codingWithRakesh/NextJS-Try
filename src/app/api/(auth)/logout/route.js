@@ -11,7 +11,7 @@ export const GET = asyncHandler(async (req) => {
     const cookieStore = await cookies();
     const token = cookieStore.get('accessToken')?.value || req.headers.get('Authorization')?.replace('Bearer ', '')
     if(!token){
-        throw new ApiError(401,"unauthorize request")
+        throw new ApiError(401,"unauthorize request");
     }
 
     let decodedToken;
